@@ -1,0 +1,35 @@
+# iotbreach lab configuration (example)
+# All targets MUST be on localhost / RFC5737 lab networks.
+general:
+  lab_host: "127.0.0.1"
+  timeout: 10
+  reports_dir: "reports"
+
+mqtt:
+  port: 1883
+  broker_sim_port: 11883
+
+coap:
+  port: 5683
+  sim_port: 15683
+
+modbus:
+  port: 502
+  sim_port: 15050
+
+upnp:
+  ssdp_port: 1900
+  sim_port: 11900
+
+can:
+  sim_port: 17000
+
+ble:
+  sim_port: 17001
+
+zigbee_433:
+  sim_port: 17002
+
+fuzz:
+  iterations: 200
+  timeout: 5

@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "iotbreach"
+version = "1.0.0"
+description = "IoT/SCADA/embedded offensive security framework — offline lab only"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "5h4d0wn1k", email = "5h4d0wn1k@users.noreply.github.com"},
+]
+keywords = ["iot", "scada", "ics", "embedded", "security", "offensive"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+dependencies = [
+    "pyyaml>=6.0",
+]
+
+[project.scripts]
+iotbreach = "iotbreach.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["iotbreach*"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
