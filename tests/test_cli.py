@@ -125,6 +125,16 @@ class TestParseCli(unittest.TestCase):
         self.assertEqual(rc, 0)
 
 
+class TestFwudCli(unittest.TestCase):
+    def test_fwud_audit_returns_zero(self):
+        from pathlib import Path
+        buf = io.StringIO()
+        with redirect_stdout(buf):
+            rc = main(["fwud", "audit", "--image",
+                       str(Path(__file__).parent.parent / "iotbreach" / "fixtures" / "firmware_v1.bin")])
+        self.assertEqual(rc, 0)
+
+
 class TestAttackCli(unittest.TestCase):
     def setUp(self):
         self.mqtt = MQTTBrokerSim()

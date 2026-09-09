@@ -70,15 +70,19 @@ def main(argv: list[str] | None = None) -> int:
     mb_write.add_argument("--value", type=int, default=1, choices=[0,1])
     mb_write.add_argument("--port", type=int, default=15050)
 
-    # ---- firmware ----
-    p_fw = sub.add_parser("firmware", help="Firmware extraction & analysis")
-    fw_sub = p_fw.add_subparsers(dest="action")
+    # ---- firmware / fwud (shared subcommand tree) ----
+    fw_parent = argparse.ArgumentParser(add_help=False, prog="firmware")
+    fw_sub = fw_parent.add_subparsers(dest="action")
     fw_extract = fw_sub.add_parser("extract", help="Extract signatures + entropy + config")
     fw_extract.add_argument("--image", required=True, help="Path to firmware image")
     fw_audit = fw_sub.add_parser("audit", help="Firmware audit (version, CVEs, tamper)")
     fw_audit.add_argument("--image", required=True)
     fw_audit.add_argument("--hash", default=None, help="Expected SHA-256 hash")
     fw_audit.add_argument("--version", default=None, help="Override version string")
+
+    p_fw = sub.add_parser("firmware", parents=[fw_parent], help="Firmware extraction & analysis")
+    p_fwud = sub.add_parser("fwud", parents=[fw_parent],
+                            help="Firmware update & downgrade audit (alias: firmware audit)")
 
     # ---- can ----
     p_can = sub.add_parser("can", help="CAN bus attack sim")
@@ -164,7 +168,7 @@ def main(argv: list[str] | None = None) -> int:
         return _cmd_upnp(args)
     elif args.command == "modbus":
         return _cmd_modbus(args)
-    elif args.command == "firmware":
+    elif args.command in ("firmware", "fwud"):
         return _cmd_firmware(args)
     elif args.command == "can":
         return _cmd_can(args)

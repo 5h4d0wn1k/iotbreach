@@ -137,6 +137,7 @@ python3 -m iotbreach ble spoof-unlock --port 17001
 # Firmware
 python3 -m iotbreach firmware extract --image iotbreach/fixtures/firmware_v1.bin
 python3 -m iotbreach firmware audit --image iotbreach/fixtures/firmware_v1.bin
+python3 -m iotbreach fwud audit --image iotbreach/fixtures/firmware_v1.bin   # fwud = firmware alias
 
 # Fuzz a protocol
 python3 -m iotbreach fuzz run --protocol modbus --port 15050 --iterations 200
