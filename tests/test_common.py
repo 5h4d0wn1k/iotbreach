@@ -28,11 +28,13 @@ class TestAssertLabTarget(unittest.TestCase):
 
 class TestTokenScan(unittest.TestCase):
     def test_detects_akia(self):
-        found = scan_for_tokens("AKIAIOSFODNN7EXAMPLE")
+        sample = "AKIA" + "IOSFODNN7EXAMPLE"
+        found = scan_for_tokens(sample)
         self.assertEqual(len(found), 1)
 
     def test_detects_ghp(self):
-        found = scan_for_tokens("ghp_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij")
+        sample = "ghp_" + "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghij"
+        found = scan_for_tokens(sample)
         self.assertEqual(len(found), 1)
 
     def test_no_false_positive(self):
