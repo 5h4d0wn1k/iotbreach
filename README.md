@@ -1,4 +1,5 @@
 # iotbreach
+![tests](https://github.com/5h4d0wn1k/iotbreach/actions/workflows/ci.yml/badge.svg) ![MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 
 IoT/SCADA/embedded offensive security framework — MQTT/CoAP/UPnP/Modbus/CAN/BLE/Zigbee/433, firmware extraction+audit, fuzzing, ICS/SCADA kill-chain simulation.
 
@@ -218,3 +219,6 @@ profile and scope review before each session.
 - py_compile on all modules: clean.
 - Full numbers (test count, accuracy, timings) live in `METRICS.md` and must be updated
   after each feature/run.
+
+## Contributing
+See [CONTRIBUTING.md](CONTRIBUTING.md).
